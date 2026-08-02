@@ -26,6 +26,7 @@ onMounted(async () => {
       <Topbar
         :title="route.meta.title"
         :filter-options="filterOptions"
+        :visible-filters="route.meta.filters || ['mode', 'group', 'subject']"
         v-model="filters"
       />
       <main class="layout__content">

@@ -23,7 +23,7 @@ const navGroups = [
     items: [
       { to: '/students', label: 'Студенты', icon: 'users' },
       { to: '/groups', label: 'Группы', icon: 'layers' },
-      { to: '/subjects', label: 'Предметы', icon: 'book' },
+      { to: '/subjects', label: 'Дисциплины', icon: 'book' },
       { to: '/grades', label: 'Оценки', icon: 'award' },
       { to: '/attendance', label: 'Посещаемость', icon: 'calendar-check' },
       { to: '/risks', label: 'Риски', icon: 'alert-triangle' },
@@ -89,14 +89,17 @@ const navGroups = [
         </div>
       </nav>
 
-      <div class="sidebar__user" v-if="user">
-        <div class="sidebar__avatar">{{ user.shortName.charAt(0) }}</div>
+      <router-link to="/profile" class="sidebar__user" v-if="user">
+        <div class="sidebar__avatar">
+          <img v-if="user.photo" :src="user.photo" alt="" />
+          <span v-else>{{ user.shortName.charAt(0) }}</span>
+        </div>
         <div class="sidebar__user-info">
           <div class="sidebar__user-name">{{ user.shortName }}</div>
           <div class="sidebar__user-role">{{ user.roleLabel }}</div>
         </div>
         <Icon name="chevron-down" :size="16" />
-      </div>
+      </router-link>
     </aside>
   </div>
 </template>
@@ -253,6 +256,12 @@ const navGroups = [
   font-weight: 600;
   font-size: 14px;
   flex-shrink: 0;
+  overflow: hidden;
+}
+.sidebar__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sidebar__user-info {

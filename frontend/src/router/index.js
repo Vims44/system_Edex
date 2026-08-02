@@ -1,11 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
+import Profile from '../views/Profile.vue'
 import Placeholder from '../views/Placeholder.vue'
 
 // Пункты меню — здесь же используются для построения Sidebar (см. components/Sidebar.vue)
+// meta.filters — какие селекторы показывать в Topbar на этой странице (по умолчанию все три)
 const routes = [
   { path: '/', redirect: '/dashboard' },
   { path: '/dashboard', name: 'dashboard', component: Dashboard, meta: { title: 'Главная' } },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile,
+    meta: { title: 'Профиль преподавателя', filters: ['mode'] },
+  },
   { path: '/students', name: 'students', component: Placeholder, meta: { title: 'Студенты' } },
   { path: '/groups', name: 'groups', component: Placeholder, meta: { title: 'Группы' } },
   { path: '/subjects', name: 'subjects', component: Placeholder, meta: { title: 'Дисциплины' } },

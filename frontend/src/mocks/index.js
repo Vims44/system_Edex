@@ -2,14 +2,32 @@
 // Поля названы так же, как в согласованной структуре БД (см. Users, Groups,
 // Students, Risks), чтобы переход на реальный API не потребовал переименований.
 
+// Соответствует таблице Users. Поле photo на бэкенде пока не заведено —
+// нужно согласовать с Лизой добавление, например, avatar_url VARCHAR(255).
 export const currentUser = {
   id: 1,
+  surname: 'Иванов',
+  name: 'Иван',
+  patronymic: 'Иванович',
   fullName: 'Иванов Иван Иванович',
   shortName: 'Иванов И.И.',
   role: 'teacher', // 'teacher' | 'curator'
   roleLabel: 'Преподаватель',
   photo: null,
+  email: 'ivanov@edurisk.ru',
+  phone: '+7 (999) 123-45-67',
+  birthDate: '1990-03-15',
+  hireDate: '2018-09-01',
+  department: 'Информационные системы',
 }
+
+// Соответствует Teacher_assignments, сгруппированному по предмету
+export const mySubjects = [
+  { id: 1, name: 'Математика', groups: ['ИС-21', 'ПИ-22'] },
+  { id: 2, name: 'Алгебра и геометрия', groups: ['ИС-21'] },
+  { id: 3, name: 'Дискретная математика', groups: ['ПИ-21', 'ИС-22'] },
+  { id: 4, name: 'Теория вероятностей', groups: ['ПИ-22'] },
+]
 
 export const filterOptions = {
   modes: [

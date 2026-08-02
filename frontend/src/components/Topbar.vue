@@ -5,6 +5,7 @@ const props = defineProps({
   title: { type: String, required: true },
   filterOptions: { type: Object, required: true },
   modelValue: { type: Object, required: true }, // { mode, group, subject }
+  visibleFilters: { type: Array, default: () => ['mode', 'group', 'subject'] },
 })
 const emit = defineEmits(['update:modelValue'])
 
@@ -23,7 +24,7 @@ function update(key, value) {
     </div>
 
     <div class="topbar__filters">
-      <label class="filter">
+      <label class="filter" v-if="visibleFilters.includes('mode')">
         <span class="filter__label">Режим:</span>
         <select :value="modelValue.mode" @change="update('mode', $event.target.value)">
           <option v-for="opt in filterOptions.modes" :key="opt.value" :value="opt.value">
@@ -32,7 +33,7 @@ function update(key, value) {
         </select>
       </label>
 
-      <label class="filter">
+      <label class="filter" v-if="visibleFilters.includes('group')">
         <span class="filter__label">Группа:</span>
         <select :value="modelValue.group" @change="update('group', $event.target.value)">
           <option v-for="opt in filterOptions.groups" :key="opt.value" :value="opt.value">
@@ -41,8 +42,8 @@ function update(key, value) {
         </select>
       </label>
 
-      <label class="filter">
-        <span class="filter__label">Предмет:</span>
+      <label class="filter" v-if="visibleFilters.includes('subject')">
+        <span class="filter__label">Дисциплина:</span>
         <select :value="modelValue.subject" @change="update('subject', $event.target.value)">
           <option v-for="opt in filterOptions.subjects" :key="opt.value" :value="opt.value">
             {{ opt.label }}
