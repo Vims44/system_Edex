@@ -13,6 +13,7 @@ import {
   currentRisks,
   mySubjects,
 } from '../mocks'
+import { students, getStudentTrend, quickFilters } from '../mocks/students'
 
 const USE_MOCKS = true
 // В моках изменения профиля храним прямо в объекте из src/mocks, чтобы они
@@ -115,4 +116,29 @@ export async function uploadAvatar(file) {
   })
   if (!res.ok) throw new Error(`API error ${res.status}: /me/avatar`)
   return res.json()
+}
+
+export async function getStudents() {
+  if (USE_MOCKS) {
+    await delay()
+    return students
+  }
+  return request('/students')
+}
+
+export async function getStudentQuickFilters() {
+  if (USE_MOCKS) {
+    await delay(50)
+    return quickFilters
+  }
+  return request('/students/filters')
+}
+
+// На бэкенде это отдельный агрегирующий запрос к Grades/Attendance за период
+export async function getStudentTrends(studentId) {
+  if (USE_MOCKS) {
+    await delay()
+    return getStudentTrend(studentId)
+  }
+  return request(`/students/${studentId}/trends`)
 }

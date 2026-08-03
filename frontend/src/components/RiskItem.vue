@@ -1,9 +1,9 @@
 <script setup>
-const props = defineProps({
+import RiskBadge from './RiskBadge.vue'
+
+defineProps({
   risk: { type: Object, required: true },
 })
-
-const labels = { high: 'Высокий', medium: 'Средний', low: 'Низкий', critical: 'Критический' }
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const labels = { high: 'Высокий', medium: 'Средний', low: 'Низ�
       <div class="risk-item__group">{{ risk.group }}</div>
     </div>
     <div class="risk-item__meta">
-      <span class="badge" :class="`badge--${risk.riskLevel}`">{{ labels[risk.riskLevel] }}</span>
+      <RiskBadge :level="risk.riskLevel" />
       <span class="risk-item__date">{{ risk.date }}</span>
     </div>
   </div>
@@ -67,34 +67,5 @@ const labels = { high: 'Высокий', medium: 'Средний', low: 'Низ�
   font-size: 11.5px;
   color: var(--color-text-muted);
   margin-top: 4px;
-}
-
-.badge {
-  font-size: 11.5px;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-.badge::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-}
-.badge--high, .badge--critical {
-  color: var(--color-danger);
-  background: #FDECEC;
-}
-.badge--medium {
-  color: var(--color-warning);
-  background: #FEF3DE;
-}
-.badge--low, .badge--none {
-  color: var(--color-success);
-  background: #E7F9EE;
 }
 </style>

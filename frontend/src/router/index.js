@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import Profile from '../views/Profile.vue'
+import Students from '../views/Students.vue'
 import Placeholder from '../views/Placeholder.vue'
 
 // Пункты меню — здесь же используются для построения Sidebar (см. components/Sidebar.vue)
@@ -14,7 +15,7 @@ const routes = [
     component: Profile,
     meta: { title: 'Профиль преподавателя', filters: ['mode'] },
   },
-  { path: '/students', name: 'students', component: Placeholder, meta: { title: 'Студенты' } },
+  { path: '/students', name: 'students', component: Students, meta: { title: 'Студенты' } },
   { path: '/groups', name: 'groups', component: Placeholder, meta: { title: 'Группы' } },
   { path: '/subjects', name: 'subjects', component: Placeholder, meta: { title: 'Дисциплины' } },
   { path: '/grades', name: 'grades', component: Placeholder, meta: { title: 'Оценки' } },
