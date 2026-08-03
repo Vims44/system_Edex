@@ -1,7 +1,7 @@
 <?php
 
 $host = "db";
-$dbname = "svar_system";
+$dbname = "edex_system_DB";
 $username = "team_user";
 $password = "team_pass";
 
