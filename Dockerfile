@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.4-apache
 
 # Установка системных зависимостей
 RUN apt-get update && apt-get install -y \
@@ -19,8 +19,8 @@ RUN docker-php-ext-install \
 # Включение mod_rewrite для красивых URL
 RUN a2enmod rewrite
 
-# Копирование конфига Apache (опционально, если понадобится)
-# COPY ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
+# Копируем наш конфиг Apache
+COPY ./docker/apache.conf /etc/apache2/sites-available/000-default.conf
 
 # Рабочая директория
 WORKDIR /var/www/html
